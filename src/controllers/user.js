@@ -13,6 +13,7 @@ export const SIGN_UP = async (req, res) => {
       name: req.body.name,
       email: req.body.email,
       password: hash,
+      questions: [],
     });
 
     const response = await newUser.save();
@@ -45,7 +46,7 @@ export const LOG_IN = async (req, res) => {
     const jwt_token = jwt.sign(
       {
         email: user.email,
-        userId: user.id,
+        user_id: user.id,
       },
       process.env.JWT_SECRET,
       {
