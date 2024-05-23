@@ -14,7 +14,7 @@ const authUser = (req, res, next) => {
 
     req.body.userId = decoded.user_id;
 
-    console.log("req.body.userId", req.body.userId);
+    console.log("middlew", req.body.userId);
 
     return next();
   });
