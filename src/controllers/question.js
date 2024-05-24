@@ -70,25 +70,23 @@ export const DELETE_QUESTION_BY_ID = async (req, res) => {
 export const ADD_ANSWER_TO_QUESTION = async (req, res) => {
   try {
     const question = await questionModel.findOne({ id: req.params.id });
-    console.log("Controller:", req.body.userId);
     if (!question) {
       return res.status(404).json({ message: "Question not found" });
     }
 
     const answer = {
       text: req.body.text,
-      userId: req.body.userId, // Use userId from the auth middleware
+      userId: req.body.userId,
+      userName: req.body.userName,
     };
 
-    // Push the answer object to the answers array
     question.answers.push(answer);
 
-    // Save the updated question
     await question.save();
 
     res.status(201).json(question);
   } catch (error) {
-    console.error(error); // Log the error for debugging purposes
+    console.error(error);
     res
       .status(500)
       .json({ message: "Internal server error", error: error.message });

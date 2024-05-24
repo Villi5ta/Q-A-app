@@ -14,11 +14,9 @@ const router = express.Router();
 
 router.post("/question", validateData(questionSchema), authUser, ADD_QUESTION);
 router.get("/question/:id", authUser, GET_QUESTION_BY_ID);
-router.get("/questions", authUser, GET_ALL_QUESTIONS);
+router.get("/questions", GET_ALL_QUESTIONS);
 router.delete("/question/:id", authUser, DELETE_QUESTION_BY_ID);
 
 router.post("/question/:id/answer", authUser, ADD_ANSWER_TO_QUESTION);
-
-//add authuser to GET_QUESTION_ANSWERS
 
 export default router;

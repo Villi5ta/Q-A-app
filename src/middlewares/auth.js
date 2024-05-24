@@ -12,9 +12,10 @@ const authUser = (req, res, next) => {
       return res.status(401).json({ message: "Authentication failed" });
     }
 
+    req.body.userName = decoded.user_name;
     req.body.userId = decoded.user_id;
 
-    console.log("middlew", req.body.userId);
+    console.log("decoded", decoded.user_name);
 
     return next();
   });
