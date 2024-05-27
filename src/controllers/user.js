@@ -18,9 +18,23 @@ export const SIGN_UP = async (req, res) => {
 
     const response = await newUser.save();
 
-    return res
-      .status(200)
-      .json({ message: "New user created", user: response });
+    const jwt_token = jwt.sign(
+      {
+        user_name: response.name,
+        email: response.email,
+        user_id: response.id,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "24h",
+      }
+    );
+
+    return res.status(200).json({
+      message: "New user created",
+      jwt_token: jwt_token,
+      user: response,
+    });
   } catch (err) {
     res.status(400).json({ message: "Error in creating user" });
   }

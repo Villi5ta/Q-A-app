@@ -11,11 +11,8 @@ const authUser = (req, res, next) => {
     if (error) {
       return res.status(401).json({ message: "Authentication failed" });
     }
-
-    req.body.userName = decoded.user_name;
     req.body.userId = decoded.user_id;
-
-    console.log("decoded", decoded.user_name);
+    req.body.userName = decoded.user_name;
 
     return next();
   });

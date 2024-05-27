@@ -14,6 +14,7 @@ const questionSchema = mongoose.Schema({
   answers: { type: [answerSchema], default: [] },
   createdAt: { type: Date, default: Date.now },
   userName: { type: String, required: true },
+  userId: { type: String, required: true },
 });
 
 export default mongoose.model("Question", questionSchema);
